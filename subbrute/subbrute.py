@@ -13,11 +13,11 @@ import os
 import signal
 import sys
 import uuid
-import random
 import ctypes
 import dns.resolver
 import dns.rdatatype
 import json
+import secrets
 
 #Python 2.x and 3.x compatiablity
 #We need the Queue library for exception handling
@@ -116,7 +116,7 @@ class verify_nameservers(multiprocessing.Process):
 
     def run(self):
         #Every user will get a different set of resovlers, this helps redistribute traffic.
-        random.shuffle(self.resolver_list)
+        secrets.SystemRandom().shuffle(self.resolver_list)
         if not self.verify(self.resolver_list):
             #This should never happen,  inform the user.
             sys.stderr.write('Warning: No nameservers found, trying fallback list.\n')

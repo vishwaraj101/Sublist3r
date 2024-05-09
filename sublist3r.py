@@ -10,7 +10,6 @@ import os
 import argparse
 import time
 import hashlib
-import random
 import multiprocessing
 import threading
 import socket
@@ -21,6 +20,7 @@ from collections import Counter
 from subbrute import subbrute
 import dns.resolver
 import requests
+import secrets
 
 # Python 2.x and 3.x compatiablity
 if sys.version > '3':
@@ -499,7 +499,7 @@ class BaiduEnum(enumratorBaseThreaded):
         return True
 
     def should_sleep(self):
-        time.sleep(random.randint(2, 5))
+        time.sleep(secrets.SystemRandom().randint(2, 5))
         return
 
     def generate_query(self):
