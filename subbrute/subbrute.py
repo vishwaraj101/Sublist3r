@@ -404,7 +404,8 @@ def extract_subdomains(file_name):
     subs_sorted = sorted(subs.keys(), key = lambda x: subs[x], reverse = True)
     return subs_sorted
 
-def print_target(target, record_type = None, subdomains = "names.txt", resolve_list = "resolvers.txt", process_count = 16, output = False, json_output = False, found_subdomains=[],verbose=False):
+def print_target(target, record_type = None, subdomains = "names.txt", resolve_list = "resolvers.txt", process_count = 16, output = False, json_output = False, found_subdomains=None,verbose=False):
+    found_subdomains = [] if found_subdomains is None else found_subdomains
     subdomains_list = []
     results_temp = []
     run(target, record_type, subdomains, resolve_list, process_count)
